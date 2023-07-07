@@ -12,6 +12,9 @@ import { LandingComponent } from './landing/landing.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    HeaderComponent
   ]
 })
 export class CoreModule { }
