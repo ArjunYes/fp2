@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { LandingComponent } from './landing/landing.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LandingComponent } from './components/landing/landing.component';
+
 
 
 
@@ -14,7 +15,8 @@ import { LandingComponent } from './landing/landing.component';
     CommonModule
   ],
   exports:[
-    HeaderComponent
+    HeaderComponent,
+    LandingComponent
   ]
 })
 export class CoreModule { }
