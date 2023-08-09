@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CoreModule } from './core/core.module';
+import { AuthModule } from './auth/auth.module';
 ;
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CoreModule } from './core/core.module';
     LayoutComponent
   ],
   imports: [
+    AuthModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule
