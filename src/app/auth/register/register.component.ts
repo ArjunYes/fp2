@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Component({
   selector: 'app-register',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
+  constructor(private utility: UtilityService){
+
+  }
+
+  login(){
+    this.utility.loginRedirect();
+  }
 
 }

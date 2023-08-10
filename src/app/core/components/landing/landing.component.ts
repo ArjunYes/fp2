@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +10,10 @@ import { Router } from '@angular/router';
 export class LandingComponent {
 
   @ViewChild('chosenSearch', { static: true }) private inputField: ElementRef | null = null
-  constructor( private router: Router){
+  constructor( 
+    private router: Router,
+    private ulility : UtilityService
+    ){
   }
 
 
@@ -18,11 +22,11 @@ export class LandingComponent {
   }
 
   login(){
-    this.router.navigate(['/login']);
+    this.ulility.loginRedirect();
   }
 
   register(){
-    this.router.navigate(['/register']);
+   this.ulility.registerRedirect();
   }
 
   setFocus(){
