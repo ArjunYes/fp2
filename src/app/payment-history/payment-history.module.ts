@@ -12,4 +12,12 @@ import { PaymentListingComponent } from './payment-listing/payment-listing.compo
     CommonModule
   ]
 })
-export class PaymentHistoryModule { }
+export class PaymentHistoryModule { 
+
+
+  constructor(){
+    
+  }
+
+
+}
