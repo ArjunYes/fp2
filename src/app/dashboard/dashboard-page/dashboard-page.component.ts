@@ -7,8 +7,14 @@ import { Component } from '@angular/core';
 })
 export class DashboardPageComponent {
 
+  showProfileMenu : boolean = false;
+
   ngOnInit(): void {
     console.log("Dashboard");
+  }
+
+  viewHideProfileMenu(){
+    this.showProfileMenu = !this.showProfileMenu;
   }
 
 
