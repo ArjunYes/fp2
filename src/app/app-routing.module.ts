@@ -8,12 +8,12 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
 
     {
       path: '',component : LandingComponent
     },
-    { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
-
+    
       
     ]
   },

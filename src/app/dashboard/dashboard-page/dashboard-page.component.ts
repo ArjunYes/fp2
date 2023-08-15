@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DashboardPageComponent {
 
+  ngOnInit(): void {
+    console.log("Dashboard");
+  }
+
+
 }
