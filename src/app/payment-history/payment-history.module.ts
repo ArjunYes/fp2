@@ -16,7 +16,7 @@ export class PaymentHistoryModule {
 
 
   constructor(){
-    
+    console.log("Hello")
   }
 
 
