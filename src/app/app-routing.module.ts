@@ -8,7 +8,13 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { 
+        path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) 
+      },
+
+      { 
+        path: 'history', loadChildren: () => import('./payment-history/payment-history.module').then(m => m.PaymentHistoryModule) 
+      },
 
     {
       path: '',component : LandingComponent
