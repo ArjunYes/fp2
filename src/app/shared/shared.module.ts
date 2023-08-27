@@ -10,6 +10,9 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
   ],
   imports: [
     CommonModule
+  ],
+  exports :[
+    TermsandconditionsComponent
   ]
 })
 export class SharedModule { }
