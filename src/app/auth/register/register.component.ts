@@ -8,12 +8,27 @@ import { UtilityService } from 'src/app/shared/services/utility.service';
 })
 export class RegisterComponent {
 
-  constructor(private utility: UtilityService){
+  showTandC : boolean = false;
 
+
+  checkValue(acceptorReject:boolean){
+    if(acceptorReject){
+      console.log("Accept");
+    }else{
+      console.log("reject");
+    }
+    this.showTandC = false;
+
+    // acceptorReject ? console.log("Accept") : console.log("reject");
+
+  }
+
+  constructor(private utility: UtilityService){
   }
 
   login(){
     this.utility.loginRedirect();
+    this.showTandC = false;
   }
 
 }
