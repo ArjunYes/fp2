@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-termsandconditions',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./termsandconditions.component.css']
 })
 export class TermsandconditionsComponent {
+
+  @Output() selectedValue = new EventEmitter<boolean>();
+  
+
+  acceptDecline(flag:boolean){
+    this.selectedValue.emit(flag);
+  }
 
 }
