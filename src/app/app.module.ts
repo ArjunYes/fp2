@@ -7,14 +7,15 @@ import { LayoutComponent } from './layout/layout.component';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
     AuthModule,
@@ -23,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
     CoreModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

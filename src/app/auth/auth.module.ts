@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/shared.module'
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 export const routes: Routes = [
@@ -30,7 +31,8 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
   ]
 })
 export class AuthModule { }
