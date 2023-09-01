@@ -6,7 +6,6 @@ import {
   ViewChild,
   HostListener,
 } from '@angular/core';
-import { UtilityService } from 'src/app/shared/services/utility.service';
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +13,8 @@ import {
   AbstractControl,
   ValidatorFn,
 } from '@angular/forms';
+import { UtilityService } from 'src/app/shared/services/utility.service';
+import { TermsandconditionsComponent } from 'src/app/shared/components/termsandconditions/termsandconditions.component';
 
 @Component({
   selector: 'app-register',
@@ -23,15 +24,14 @@ import {
 export class RegisterComponent implements OnInit {
   @ViewChild('registerTitle', { static: true })
   registerTitleElement!: ElementRef;
-  @ViewChild('firstNameError', { static: false })
-  firstNameError!: ElementRef;
-  inputElements: { [key: string]: ElementRef<HTMLInputElement> } = {};
+  @ViewChild('termsAndConditionsModal') termsAndConditionsModal!: ElementRef;
   showTandC: boolean = false;
   submitted = false;
   registerForm: FormGroup;
   registeredUsers: { email: string; password: string }[] = [];
   today: Date = new Date();
   titleText: string = 'Create an account';
+  focusedInvalidField: string | null = null;
 
   checkValue(acceptorReject: boolean) {
     if (acceptorReject) {
@@ -48,65 +48,110 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private utility: UtilityService,
     private renderer: Renderer2,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
   ) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const passwordPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const phoneNumberPattern = /^\(\d{3}\)-\d{3}-\d{4}$/;
+
     this.registerForm = this.formBuilder.group({
-      'first-name': ['', Validators.required],
-      'last-name': ['', Validators.required],
+      'first-name': [
+        '',
+        { validators: [Validators.required], updateOn: 'submit' },
+      ],
+      'last-name': [
+        '',
+        { validators: [Validators.required], updateOn: 'submit' },
+      ],
       email: [
         '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-          ),
-        ],
+        {
+          validators: [Validators.required, Validators.pattern(emailPattern)],
+          updateOn: 'submit',
+        },
       ],
       password: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(
-            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).*$/
-          ),
-        ],
+        {
+          validators: [
+            Validators.required,
+            Validators.pattern(passwordPattern),
+          ],
+          updateOn: 'submit',
+        },
       ],
       'confirm-password': [
         '',
-        [Validators.required, this.passwordMatchValidator],
+        {
+          validators: [Validators.required, this.passwordMatchValidator],
+          updateOn: 'submit',
+        },
       ],
-      'date-of-birth': ['', Validators.required],
-      address: ['', Validators.required],
+      'date-of-birth': [
+        '',
+        {
+          validators: [Validators.required, this.validDateValidator()],
+          updateOn: 'submit',
+        },
+      ],
+      address: ['', { validators: [Validators.required], updateOn: 'submit' }],
       'phone-number': [
         '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '^(\\+\\d{1,2}\\s)?\\(\\d{3}\\)[\\s.-]\\d{3}[\\s.-]\\d{4}$'
-          ),
-        ],
+        {
+          validators: [
+            Validators.required,
+            Validators.pattern(phoneNumberPattern),
+          ],
+          updateOn: 'submit',
+        },
       ],
-      terms: [false, Validators.requiredTrue],
+      terms: [
+        false,
+        { validators: [Validators.requiredTrue], updateOn: 'submit' },
+      ],
     });
-    this.registerForm
-      .get('date-of-birth')
-      ?.setValidators(this.dateOfBirthValidator);
   }
 
-  focusOnError(fieldName: string) {
-    const invalidField = this.registerForm.get(fieldName);
+  focusOnError(errorfields: string[], validfields: string[]) {
+    console.log('these are valid fields', validfields);
 
-    if (invalidField && invalidField.invalid && invalidField.touched) {
-      const errorElement = document.getElementById(`${fieldName}-error`);
+
+    const invalidField = this.registerForm.get(errorfields[0]);
+    if (invalidField) {
+      // this.focusedInvalidField = errorfields; // Set the currently focused invalid field
+      const errorMessageElement = document.getElementById(
+        `${errorfields[0]}-error`
+      );
+      const errorElement = document.getElementById(`${errorfields[0]}`);
       if (errorElement) {
-        errorElement.focus(); 
-        errorElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
+        this.registerForm.controls[errorfields[0]].markAsTouched();
+        //@ts-ignore
+        errorMessageElement?.focus();
+        setTimeout(() => {
+          errorElement.focus();
+        }, 1000);
       }
     }
+  }
+
+  validDateValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value;
+
+      if (!value) {
+        return null;
+      }
+
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+
+      if (selectedDate >= currentDate) {
+        return { invalidDate: true };
+      }
+
+      return null;
+    };
   }
 
   ngOnInit(): void {
@@ -148,6 +193,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log('this is the registerform', this.registerForm);
     if (this.registerForm.valid) {
       const formData = this.registerForm.value;
       if (this.registeredUsers.some((user) => user.email === formData.email)) {
@@ -160,17 +206,20 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('userData', JSON.stringify(this.registeredUsers));
         this.registerForm.reset();
         this.submitted = false;
+        this.focusedInvalidField = null;
       }
     } else {
-      this.markFormGroupTouched(this.registerForm);
-    }
-
-    const firstNameControl = this.registerForm.get('first-name');
-    if (firstNameControl?.invalid) {
-      this.firstNameError.nativeElement.tabIndex = 1;
-      this.focusOnError('first-name');
-    } else {
-      this.firstNameError.nativeElement.tabIndex = -1;
+      const invalidFields = Object.keys(this.registerForm.controls).filter(
+        (controlName) =>
+          this.registerForm.controls[controlName].status !== 'VALID'
+      );
+      const validFields = Object.keys(this.registerForm.controls).filter(
+        (controlName) =>
+          this.registerForm.controls[controlName].status == 'VALID'
+      );
+      if (invalidFields.length > 0) {
+        this.focusOnError(invalidFields, validFields);
+      }
     }
   }
 
@@ -206,6 +255,17 @@ export class RegisterComponent implements OnInit {
       }
     }
     return null;
+  }
+
+
+
+  show() {
+    this.showTandC = true; // Assuming this controls the visibility of the modal
+  }
+
+  openTermsAndConditionsModal(): void {
+    console.log('Opening terms and conditions modal');
+    this.showTandC = true;
   }
 
   markFormGroupTouched(formGroup: FormGroup) {
