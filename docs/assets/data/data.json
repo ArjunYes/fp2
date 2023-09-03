@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "fName": "John",
+      "lName": "Doe",
+      "email": "john@example.com",
+      "dob": "1990-05-15",
+      "hospitals": [
+        {
+          "id": 1248,
+          "visitDate": "2000-12-03",
+          "doctorName": "Dr. Smith",
+          "amountToPay": 200.0
+        },
+        {
+          "id": 2345,
+          "visitDate": "2021-08-20",
+          "doctorName": "Dr. Johnson",
+          "amountToPay": 150.0
+        },
+        {
+          "id": 3456,
+          "visitDate": "2022-04-15",
+          "doctorName": "Dr. Anderson",
+          "amountToPay": 300.0
+        },
+        {
+          "id": 4567,
+          "visitDate": "2023-01-10",
+          "doctorName": "Dr. Davis",
+          "amountToPay": 250.0
+        },
+        {
+          "id": 5678,
+          "visitDate": "2022-07-05",
+          "doctorName": "Dr. Garcia",
+          "amountToPay": 180.0
+        },
+        {
+          "id": 6789,
+          "visitDate": "2023-03-20",
+          "doctorName": "Dr. Rodriguez",
+          "amountToPay": 220.0
+        }
+      ],
+      "password": "password123",
+      "address": "123 Main St",
+      "phoneNumber": "+1-555-123-4567"
+    }
+  ]
+}
