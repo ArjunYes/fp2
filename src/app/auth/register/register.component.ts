@@ -13,8 +13,8 @@ import {
   AbstractControl,
   ValidatorFn,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UtilityService } from 'src/app/shared/services/utility.service';
-import { TermsandconditionsComponent } from 'src/app/shared/components/termsandconditions/termsandconditions.component';
 
 @Component({
   selector: 'app-register',
@@ -26,9 +26,9 @@ export class RegisterComponent implements OnInit {
   registerTitleElement!: ElementRef;
   @ViewChild('termsAndConditionsModal') termsAndConditionsModal!: ElementRef;
   showTandC: boolean = false;
+  @ViewChild('day') dayInput!: ElementRef;
   submitted = false;
   registerForm: FormGroup;
-  registeredUsers: { email: string; password: string }[] = [];
   today: Date = new Date();
   titleText: string = 'Create an account';
   focusedInvalidField: string | null = null;
@@ -36,12 +36,11 @@ export class RegisterComponent implements OnInit {
   checkValue(acceptorReject: boolean) {
     if (acceptorReject) {
       console.log('Accept');
+      this.registerForm.get('terms')?.setValue(true); // Set 'terms' control to true
     } else {
-      console.log('reject');
+      console.log('Reject');
     }
     this.showTandC = false;
-
-    // acceptorReject ? console.log("Accept") : console.log("reject");
   }
 
   constructor(
@@ -49,6 +48,7 @@ export class RegisterComponent implements OnInit {
     private utility: UtilityService,
     private renderer: Renderer2,
     private elementRef: ElementRef,
+    private router: Router
   ) {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const passwordPattern =
@@ -88,13 +88,6 @@ export class RegisterComponent implements OnInit {
           updateOn: 'submit',
         },
       ],
-      'date-of-birth': [
-        '',
-        {
-          validators: [Validators.required, this.validDateValidator()],
-          updateOn: 'submit',
-        },
-      ],
       address: ['', { validators: [Validators.required], updateOn: 'submit' }],
       'phone-number': [
         '',
@@ -113,50 +106,16 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  focusOnError(errorfields: string[], validfields: string[]) {
-    console.log('these are valid fields', validfields);
-
-
-    const invalidField = this.registerForm.get(errorfields[0]);
-    if (invalidField) {
-      // this.focusedInvalidField = errorfields; // Set the currently focused invalid field
-      const errorMessageElement = document.getElementById(
-        `${errorfields[0]}-error`
-      );
-      const errorElement = document.getElementById(`${errorfields[0]}`);
-      if (errorElement) {
-        this.registerForm.controls[errorfields[0]].markAsTouched();
-        //@ts-ignore
-        errorMessageElement?.focus();
-        setTimeout(() => {
-          errorElement.focus();
-        }, 1000);
-      }
-    }
-  }
-
-  validDateValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const value = control.value;
-
-      if (!value) {
-        return null;
-      }
-
-      const selectedDate = new Date(value);
-      const currentDate = new Date();
-
-      if (selectedDate >= currentDate) {
-        return { invalidDate: true };
-      }
-
-      return null;
-    };
-  }
-
   ngOnInit(): void {
     this.titleText = 'Create an account';
     this.registerTitleElement.nativeElement.focus();
+  }
+
+  ngAfterViewInit(): void {
+    // Set focus on the "Day" input field after a delay
+    setTimeout(() => {
+      this.dayInput.nativeElement.focus();
+    }, 500); // Adjust the delay as needed
   }
 
   @HostListener('keydown', ['$event'])
@@ -195,19 +154,8 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     console.log('this is the registerform', this.registerForm);
     if (this.registerForm.valid) {
-      const formData = this.registerForm.value;
-      if (this.registeredUsers.some((user) => user.email === formData.email)) {
-        this.registerForm.get('email')?.setErrors({ userExists: true });
-      } else {
-        this.registeredUsers.push({
-          email: formData.email,
-          password: formData.password,
-        });
-        localStorage.setItem('userData', JSON.stringify(this.registeredUsers));
-        this.registerForm.reset();
-        this.submitted = false;
-        this.focusedInvalidField = null;
-      }
+      this.router.navigate(['/landing']);
+      this.showTandC = false;
     } else {
       const invalidFields = Object.keys(this.registerForm.controls).filter(
         (controlName) =>
@@ -234,33 +182,29 @@ export class RegisterComponent implements OnInit {
     }
   };
 
-  dateOfBirthValidator(control: AbstractControl) {
-    if (control.value) {
-      const currentDate = new Date();
-      const selectedDate = new Date(control.value);
+  focusOnError(errorfields: string[], validfields: string[]) {
+    console.log('these are valid fields', validfields);
 
-      const selectedDateWithoutTime = new Date(
-        selectedDate.getFullYear(),
-        selectedDate.getMonth(),
-        selectedDate.getDate()
+    const invalidField = this.registerForm.get(errorfields[0]);
+    if (invalidField) {
+      // this.focusedInvalidField = errorfields; // Set the currently focused invalid field
+      const errorMessageElement = document.getElementById(
+        `${errorfields[0]}-error`
       );
-      const currentDateWithoutTime = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        currentDate.getDate()
-      );
-
-      if (selectedDateWithoutTime <= currentDateWithoutTime) {
-        return { invalidDate: true };
+      const errorElement = document.getElementById(`${errorfields[0]}`);
+      if (errorElement) {
+        this.registerForm.controls[errorfields[0]].markAsTouched();
+        //@ts-ignore
+        errorMessageElement?.focus();
+        setTimeout(() => {
+          errorElement.focus();
+        }, 1000);
       }
     }
-    return null;
   }
 
-
-
   show() {
-    this.showTandC = true; // Assuming this controls the visibility of the modal
+    this.showTandC = true; 
   }
 
   openTermsAndConditionsModal(): void {
