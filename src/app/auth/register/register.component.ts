@@ -154,7 +154,7 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     console.log('this is the registerform', this.registerForm);
     if (this.registerForm.valid) {
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/login']);
       this.showTandC = false;
     } else {
       const invalidFields = Object.keys(this.registerForm.controls).filter(
