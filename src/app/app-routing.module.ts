@@ -22,6 +22,9 @@ const routes: Routes = [
     },
 
     {
+      path: 'card/:amount',component : CardComponent
+    },
+    {
       path: 'card',component : CardComponent
     },
     
