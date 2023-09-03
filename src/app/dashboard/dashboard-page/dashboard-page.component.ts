@@ -18,4 +18,30 @@ export class DashboardPageComponent {
   }
 
 
+
+// user  ={
+// 	fName :,
+// 	lName : ,
+// 	email :,
+// 	dob :,
+// 	hospitals : [],
+//   password:
+// address :
+// phoneNumber
+// }
+
+
+
+// hospital = { 
+// 	id : 1248,
+// 	visitDate : 12/3/2000,
+// 	doctorName : "sds",
+// 	amountToPay : 
+
+// 	}
+
+
+
+
+
 }
