@@ -6,7 +6,7 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
 
 @NgModule({
   declarations: [
-    TermsandconditionsComponent
+    TermsandconditionsComponent,
   ],
   imports: [
     CommonModule
