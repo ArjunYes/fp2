@@ -97,8 +97,8 @@ export class LoginComponent {
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.valid) {
-      // Add the authentication logic here if needed, otherwise this code assumes that any valid email and non-empty password is accepted
-
+      console.log(this.loginForm.value.email);
+      localStorage.setItem('loggedInUser', this.loginForm.value.email);
       this.router.navigate(['/dashboard']);
     } else {
       const invalidFields = Object.keys(this.loginForm.controls).filter(
