@@ -46,6 +46,7 @@ export class DashboardPageComponent implements OnInit {
   dashboardTitleElement!: ElementRef;
   dashboardTitle: string = 'Dashboard';
   windowWidth: number = window.innerWidth;
+  
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -177,5 +178,11 @@ export class DashboardPageComponent implements OnInit {
 
     getWindowWidth() {
       return this.windowWidth;
+    }
+
+    removeSelectedBills(): void {
+      if (this.user && this.user.hospitals) {
+        this.user.hospitals = this.user.hospitals.filter((visit) => !visit.selectedForPayment);
+      }
     }
 }

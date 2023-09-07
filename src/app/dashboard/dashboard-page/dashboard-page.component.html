@@ -425,7 +425,7 @@
   <app-card
     (closeCard)="hideCard()"
     [selectedAmount]="selectedAmount"
-    (payClicked)="onPay()"
+    (payClicked)="onPay(); onPayButtonClick(); removeSelectedBills();"
   ></app-card>
 </div>
 <div *ngIf="showSuccess" class="card-overlay" data-te-modal-init>

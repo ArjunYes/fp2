@@ -35,10 +35,10 @@ export class SuccessComponent {
       event.preventDefault();
 
       this.tabPressCounter++;
-      if (this.tabPressCounter % 6 === 0) {
-        const modalElement = document.getElementById('modal');
+      if (this.tabPressCounter % 4 === 0) {
+        const successTitle = document.getElementById('successTitle');
         setTimeout(() => {
-          modalElement?.focus();
+          successTitle?.focus();
         }, 0);
       }
     }
