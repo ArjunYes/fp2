@@ -1,16 +1,22 @@
-<body class="flex bg-gray-100 min-h-screen" x-data="{panel:false, menu:true}" id="main-dashboard">
+<body
+  class="flex bg-gray-100 min-h-screen overflow-x-auto"
+  x-data="{panel:false, menu:true}"
+  id="main-dashboard"
+>
   <aside
     class="flex flex-col"
-    :class="{'hidden sm:flex sm:flex-col': window.outerWidth > 768}"
+    :class="{'hidden sm:flex sm:flex-col': window.outerWidth < 768}"
+    [style.display]="getWindowWidth() < 1024 ? 'none' : 'block'"
   >
     <div
-      class="flex-grow flex flex-col justify-center text-gray-500 bg-gray-800"
+      class="h-full flex-grow flex flex-col justify-center text-gray-400 bg-gray-800"
     >
       <nav class="flex flex-col mx-12 my-12 space-y-4">
-
-        <a tabindex="13"
+        <a
+          tabindex="13"
           href="#"
           class="focusable-element inline-flex items-center py-3 text-blue-600 bg-white rounded-lg px-2 justify-start"
+          (click)="navigateToDashboard()"
         >
           <svg
             aria-hidden="true"
@@ -28,7 +34,8 @@
           </svg>
           <span class="ml-2" x-show="menu">Dashboard</span>
         </a>
-        <a tabindex="14"
+        <a
+          tabindex="14"
           href="#"
           class="focusable-element inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 justify-start"
         >
@@ -53,13 +60,11 @@
   </aside>
   <div class="flex-grow text-gray-800">
     <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
-      <div class="mr-8 cursor-pointer">
-      </div>
-      <div class="relative w-full max-w-md sm:-ml-2">
-        
-      </div>
+      <div class="mr-8 cursor-pointer"></div>
+      <div class="relative w-full max-w-md sm:-ml-2"></div>
       <div class="flex flex-shrink-0 items-center ml-auto">
-        <button tabindex="15"
+        <button
+          tabindex="15"
           (click)="viewHideProfileMenu()"
           class="focusable-element relative inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg"
         >
@@ -98,13 +103,23 @@
           class="absolute top-20 bg-white border rounded-md p-2 w-56"
           x-show="panel"
         >
-          <a tabindex="16" class="focusable-element p-2 block hover:bg-blue-100 cursor-pointer">Dashboard</a>
-          <a tabindex="17" class="focusable-element p-2 block hover:bg-blue-100 cursor-pointer">History</a>
+          <a
+            tabindex="16"
+            (click)="navigateToDashboard()"
+            class="focusable-element p-2 block hover:bg-blue-100 cursor-pointer"
+            >Dashboard</a
+          >
+          <a
+            tabindex="17"
+            class="focusable-element p-2 block hover:bg-blue-100 cursor-pointer"
+            >History</a
+          >
         </div>
 
         <div class="border-l pl-3 ml-3 space-x-1">
-          
-          <button tabindex="18"
+          <button
+            tabindex="18"
+            (click)="logout()"
             class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full"
           >
             <span class="sr-only">Log out</span>
@@ -126,7 +141,7 @@
         </div>
       </div>
     </header>
-    <main class="p-6 sm:p-10 space-y-6">
+    <main class="p-1 md:p-6 sm:p-10 space-y-6">
       <div
         class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between"
       >
@@ -152,9 +167,7 @@
             Manage your account and payments.
           </h2>
         </div>
-        
       </div>
-      
 
       <section
         role="region"
@@ -251,7 +264,6 @@
             tabindex="5"
             summary="Medical Bills Data"
             aria-label="Medical Bills"
-            role="grid"
             class="focusable-element text-2xl font-semibold p-4"
             id="medical-bills"
           >
@@ -271,38 +283,39 @@
                 <tr>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200"
+                    class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider border-b border-gray-200"
                   >
                     Hospital ID
                   </th>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200"
+                    class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider border-b border-gray-200"
                   >
                     Visit Date
                   </th>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200"
+                    class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider border-b border-gray-200"
                   >
                     Doctor Name
                   </th>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200"
+                    class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider border-b border-gray-200"
                   >
                     Amount To Pay
                   </th>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200"
+                    class="px-6 py-3 text-left text-sm font-bold text-gray-600 uppercase tracking-wider border-b border-gray-200"
                   >
                     Select Bill for Payment
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="focusable-element"
+                <tr
+                  class="focusable-element"
                   *ngFor="let visit of user.hospitals"
                   tabindex="8"
                   [attr.aria-label]="
@@ -360,10 +373,13 @@
               class="bg-white shadow p-4 flex justify-between rounded-bl-lg rounded-br-lg"
             >
               <div>
-                <h6 tabindex="9" class="focusable-element text-xl font-semibold mb-4">
+                <h6
+                  tabindex="9"
+                  class="focusable-element text-xl font-semibold mb-4"
+                >
                   Payment Summary
                 </h6>
-                <p class="focusable-element"  tabindex="10">
+                <p class="focusable-element" tabindex="10">
                   Total Payment Amount: {{ calculateTotalPayment() | currency }}
                 </p>
                 <p class="focusable-element" tabindex="11">
@@ -383,7 +399,7 @@
                 </button>
                 <div
                   id="checkbox-error"
-                  class="text-red-500"
+                  class="text-red-600"
                   *ngIf="isPayButtonClicked && calculateBillCount() === 0"
                 >
                   Select at least one bill for payment.
@@ -397,7 +413,9 @@
           class="container mx-auto py-8"
           *ngIf="user && user.hospitals.length === 0"
         >
-          <p tabindex="6" role="alert" class="focusable-element text-gray-600">No medical bills available.</p>
+          <p tabindex="6" role="alert" class="focusable-element text-gray-600">
+            No medical bills available.
+          </p>
         </div>
       </section>
     </main>

@@ -24,7 +24,7 @@ export class SuccessComponent {
 
   resetStyle() {
     const element = document.getElementById('main-dashboard');
-    this.renderer.setStyle(element, 'display', 'block');
+    this.renderer.setStyle(element, 'display', 'flex');
     const dashboardTitle = document.getElementById('dashboardTitle');
     dashboardTitle?.focus();
   }

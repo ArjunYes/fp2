@@ -8,6 +8,7 @@ import {
   Renderer2,
   HostListener,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import * as data from '../../../assets/data/data.json';
 
 interface User {
@@ -44,14 +45,20 @@ export class DashboardPageComponent implements OnInit {
   @ViewChild('dashboardTitle', { static: true })
   dashboardTitleElement!: ElementRef;
   dashboardTitle: string = 'Dashboard';
+  windowWidth: number = window.innerWidth;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private elementRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.windowWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth;
+    });
     this.dashboardTitle = 'Dashboard';
     this.dashboardTitleElement.nativeElement.focus();
 
@@ -63,9 +70,6 @@ export class DashboardPageComponent implements OnInit {
     }
   }
 
-  // ngAfterViewInit(): void {
-  //   this.trapFocusWithinElement(this.elementRef.nativeElement);
-  // }
 
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
@@ -157,8 +161,21 @@ export class DashboardPageComponent implements OnInit {
 
   resetStyle() {
     const element = document.getElementById('main-dashboard');
-    this.renderer.setStyle(element, 'display', 'block');
+    this.renderer.setStyle(element, 'display', 'flex');
     const dashboardTitle = document.getElementById('dashboardTitle');
     dashboardTitle?.focus();
   }
+
+  logout() {
+    localStorage.removeItem('loggedInUser');
+    this.router.navigate(['/landing']);
+  }
+
+  navigateToDashboard() {
+    event?.preventDefault();
+    window.location.href = '/dashboard';  }
+
+    getWindowWidth() {
+      return this.windowWidth;
+    }
 }

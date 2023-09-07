@@ -1,35 +1,11 @@
 {
   "users": [
     {
-      "fName": "John",
-      "lName": "Doe",
-      "email": "john@example.com",
-      "dob": "1990-05-15",
+      "fName": "Mary",
+      "lName": "Anne",
+      "email": "mary@email.com",
+      "dob": "1982-10-02",
       "hospitals": [
-        {
-          "id": 1248,
-          "visitDate": "2000-12-03",
-          "doctorName": "Dr. Smith",
-          "amountToPay": 200.0
-        },
-        {
-          "id": 2345,
-          "visitDate": "2021-08-20",
-          "doctorName": "Dr. Johnson",
-          "amountToPay": 150.0
-        },
-        {
-          "id": 3456,
-          "visitDate": "2022-04-15",
-          "doctorName": "Dr. Anderson",
-          "amountToPay": 300.0
-        },
-        {
-          "id": 4567,
-          "visitDate": "2023-01-10",
-          "doctorName": "Dr. Davis",
-          "amountToPay": 250.0
-        },
         {
           "id": 5678,
           "visitDate": "2022-07-05",
@@ -43,9 +19,45 @@
           "amountToPay": 220.0
         }
       ],
-      "password": "password123",
+      "password": "Bb@654321",
       "address": "123 Main St",
-      "phoneNumber": "+1-555-123-4567"
+      "phoneNumber": "+1-511-247-3444",
+      "imageUrl": "assets/images/mary-anne.jpg"
+    },
+    {
+      "fName": "James",
+      "lName": "Smith",
+      "email": "james@email.com",
+      "dob": "1990-05-15",
+      "hospitals": [
+        {
+          "id": 1248,
+          "visitDate": "2000-12-03",
+          "doctorName": "Dr. Smith",
+          "amountToPay": 200.0
+        },
+        {
+          "id": 2345,
+          "visitDate": "2021-08-20",
+          "doctorName": "Dr. Johnson",
+          "amountToPay": 150.0
+        }
+      ],
+      "password": "Aa@123456",
+      "address": "842 Central Boulevard",
+      "phoneNumber": "+1-555-123-4567",
+      "imageUrl": "assets/images/james-smith.jpg"
+    },
+    {
+      "fName": "Jack",
+      "lName": "Williams",
+      "email": "jack@email.com",
+      "dob": "1996-12-30",
+      "hospitals": [],
+      "password": "Aa@123456",
+      "address": "242 South New Avenue",
+      "phoneNumber": "+1-550-189-4357",
+      "imageUrl": "assets/images/jack-williams.jpg"
     }
   ]
 }
