@@ -1,12 +1,14 @@
 <!-- Modal -->
-<div
+<section
   data-te-modal-init
   data-te-modal-body-ref
   data-te-backdrop="false"
-  class="static left-0 top-0 z-[1055] block h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+  class="static left-0 top-0 z-[1055] block h-full w-full overflow-y-auto overflow-x-hidden outline-none font-inherit"
   id="exampleModalComponents"
   tabindex="-1"
   aria-labelledby="successTitle"
+  role="dialog"
+  aria-modal="true"
 >
   <div
     data-te-modal-dialog-ref
@@ -19,7 +21,7 @@
         class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50"
       >
         <h5
-          class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+          class="text-2xl font-bold leading-normal text-neutral-800 dark:text-neutral-200"
           id="successTitle"
           tabindex="0"
         >
@@ -39,7 +41,8 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="h-6 w-6"
+            class="h-6 w-6 text-md font-medium"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -47,14 +50,23 @@
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
+          <span class="sr-only">Close</span>
         </button>
       </div>
       <div class="relative flex-auto p-4" data-te-modal-body-ref>
         <div class="relative flex-auto p-4" data-te-modal-body-ref>
           <div class="text-center text-success">
-            <i class="bi bi-check-circle-fill text-green-500" style="font-size: 3rem"></i>
+            <i
+              class="bi bi-check-circle-fill text-green-500"
+              style="font-size: 3rem"
+              aria-hidden="true"
+            ></i>
           </div>
-          <p class="text-center" tabindex="2" aria-label="Thank you for your payment. Your transaction was successful.">
+          <p
+            class="text-center text-lg font-medium"
+            tabindex="2"
+            aria-label="Thank you for your payment. Your transaction was successful."
+          >
             Thank you for your payment. Your transaction was successful.
           </p>
         </div>
@@ -64,7 +76,7 @@
       >
         <button
           type="button"
-          class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
+          class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-md font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
           data-te-modal-dismiss
           data-te-ripple-init
           data-te-ripple-color="light"
@@ -76,4 +88,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>
