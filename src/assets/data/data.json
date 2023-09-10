@@ -1,63 +1,81 @@
 {
   "users": [
     {
-      "fName": "Mary",
-      "lName": "Anne",
-      "email": "mary@email.com",
-      "dob": "1982-10-02",
+      "fName": "Bibin",
+      "lName": "Cherian",
+      "email": "bibin@email.com",
+      "dob": "1990-06-15",
       "hospitals": [
+        {
+          "id": 1234,
+          "visitDate": "2022-05-10",
+          "doctorName": "Dr. Patel",
+          "amountToPay": 250.0
+        },
         {
           "id": 5678,
-          "visitDate": "2022-07-05",
+          "visitDate": "2022-09-18",
           "doctorName": "Dr. Garcia",
           "amountToPay": 180.0
-        },
-        {
-          "id": 6789,
-          "visitDate": "2023-03-20",
-          "doctorName": "Dr. Rodriguez",
-          "amountToPay": 220.0
         }
       ],
-      "password": "Bb@654321",
-      "address": "123 Main St",
-      "phoneNumber": "+1-511-247-3444",
-      "imageUrl": "assets/images/mary-anne.jpg"
+      "password": "Bb@123456",
+      "address": "456 Oak Street",
+      "phoneNumber": "+1-555-789-1234",
+      "imageUrl": "assets/images/bibin-cherian.jpg"
     },
     {
-      "fName": "James",
-      "lName": "Smith",
-      "email": "james@email.com",
-      "dob": "1990-05-15",
+      "fName": "Noel",
+      "lName": "Joby",
+      "email": "noel@email.com",
+      "dob": "1985-03-22",
       "hospitals": [
         {
-          "id": 1248,
-          "visitDate": "2000-12-03",
+          "id": 7890,
+          "visitDate": "2023-01-05",
           "doctorName": "Dr. Smith",
-          "amountToPay": 200.0
+          "amountToPay": 220.0
         },
         {
-          "id": 2345,
-          "visitDate": "2021-08-20",
-          "doctorName": "Dr. Johnson",
-          "amountToPay": 150.0
+          "id": 8901,
+          "visitDate": "2023-03-20",
+          "doctorName": "Dr. Rodriguez",
+          "amountToPay": 200.0
         }
       ],
-      "password": "Aa@123456",
-      "address": "842 Central Boulevard",
-      "phoneNumber": "+1-555-123-4567",
-      "imageUrl": "assets/images/james-smith.jpg"
+      "password": "Nj@654321",
+      "address": "789 Elm Avenue",
+      "phoneNumber": "+1-511-987-6543",
+      "imageUrl": "assets/images/noel-joby.jpg"
     },
     {
-      "fName": "Jack",
-      "lName": "Williams",
-      "email": "jack@email.com",
-      "dob": "1996-12-30",
+      "fName": "Athira",
+      "lName": "Unni",
+      "email": "athira@email.com",
+      "dob": "1992-11-28",
       "hospitals": [],
-      "password": "Aa@123456",
-      "address": "242 South New Avenue",
-      "phoneNumber": "+1-550-189-4357",
-      "imageUrl": "assets/images/jack-williams.jpg"
+      "password": "Au@123456",
+      "address": "321 Pine Lane",
+      "phoneNumber": "+1-550-246-8790",
+      "imageUrl": "assets/images/athira-unni.jpg"
+    },
+    {
+      "fName": "Viveek",
+      "lName": "Gopan",
+      "email": "viveek@email.com",
+      "dob": "1980-08-10",
+      "hospitals": [
+        {
+          "id": 3456,
+          "visitDate": "2021-12-15",
+          "doctorName": "Dr. Brown",
+          "amountToPay": 300.0
+        }
+      ],
+      "password": "Vg@123456",
+      "address": "987 Willow Street",
+      "phoneNumber": "+1-555-987-6543",
+      "imageUrl": "assets/images/viveek-gopan.jpg"
     }
   ]
 }
