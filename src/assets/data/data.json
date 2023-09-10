@@ -22,7 +22,7 @@
       "password": "Bb@123456",
       "address": "456 Oak Street",
       "phoneNumber": "+1-555-789-1234",
-      "imageUrl": "assets/images/bibin-cherian.jpg"
+      "imageUrl": "assets/images/james-smith.jpg"
     },
     {
       "fName": "Noel",
@@ -46,7 +46,7 @@
       "password": "Nj@654321",
       "address": "789 Elm Avenue",
       "phoneNumber": "+1-511-987-6543",
-      "imageUrl": "assets/images/noel-joby.jpg"
+      "imageUrl": "assets/images/james-smith.jpg"
     },
     {
       "fName": "Athira",
@@ -57,7 +57,7 @@
       "password": "Au@123456",
       "address": "321 Pine Lane",
       "phoneNumber": "+1-550-246-8790",
-      "imageUrl": "assets/images/athira-unni.jpg"
+      "imageUrl": "assets/images/mary-anne.jpg"
     },
     {
       "fName": "Viveek",
@@ -75,7 +75,7 @@
       "password": "Vg@123456",
       "address": "987 Willow Street",
       "phoneNumber": "+1-555-987-6543",
-      "imageUrl": "assets/images/viveek-gopan.jpg"
+      "imageUrl": "assets/images/james-smith.jpg"
     }
   ]
 }
